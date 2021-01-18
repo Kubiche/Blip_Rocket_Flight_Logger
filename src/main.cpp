@@ -20,6 +20,8 @@ unsigned long timer2; // NAV timer
 bool LED_State = 0;   // State to pass to LED function. 0 equals LED ON.
 
 
+
+
 byte Stage = 0;
 /* Tracker for flight stage
 0 = Ground Idle / Calibrating
@@ -28,6 +30,7 @@ byte Stage = 0;
 3 = Chute Descent
 4 = Landed
 */
+unsigned long timer3; // Stage toggling timer for development.
 
 
 //This is for the BMP280 barometer
@@ -67,6 +70,7 @@ void setup() {
   //Set Startup time  
   timer1 = millis();
   timer2 = timer1;
+  timer3 = timer1;
 
   //set system led pins as outputs
   while (color_selector < 3){
@@ -121,6 +125,12 @@ void loop() {
       Serial.println(relativeAltitude(altitude_offset));
       timer2 = millis();
     }
+    
+    //Develpment auto stage toggler
+    if (millis() - timer3 >=30000){
+      Stage ++;
+      timer3 = millis();
+    }  
     
   }  
   
