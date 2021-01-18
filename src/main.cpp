@@ -127,7 +127,7 @@ void loop() {
     }
     
     //Develpment auto stage toggler
-    if (millis() - timer3 >=30000){
+    if (millis() - timer3 >= 30000){
       Stage ++;
       timer3 = millis();
     }  
