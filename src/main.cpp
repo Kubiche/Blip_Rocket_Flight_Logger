@@ -12,7 +12,7 @@
 const byte RGB[] = {9, 2 , 6}; // Array containing LED pins.
 byte color_selector = 0;
 const byte Buzzer = 10;
-const float pressure_at_sea_level = 1018.63; // obtained on day of lauch from nearest airport
+const float pressure_at_sea_level = 1026.75; // obtained on day of lauch from nearest airport
 float altitude_offset;
 int relative_altitude;
 unsigned long timer1; //LED timer
@@ -42,6 +42,7 @@ int16_t ax, ay, az;
 int16_t gx, gy, gz;
 #define OUTPUT_READABLE_ACCELGYRO
 
+//Function to operate on LEDs.
 void lightLED(int color, bool State){
   switch (color){
     case 9:
@@ -62,6 +63,7 @@ void lightLED(int color, bool State){
   }
 }
 
+//Function to resolve relative altitude from pad.
 int relativeAltitude (float offset){
   return bmp.readAltitude(pressure_at_sea_level) - offset;
 }
